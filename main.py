@@ -1,4 +1,4 @@
-from gui import *
+from config import *
 import tkinter as tk
 from tkinter import ttk
 
