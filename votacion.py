@@ -3,9 +3,6 @@ from tkinter import ttk
 from config import *
 
 def votacion(candidatos):
-    for candidato in candidatos:
-            print(candidato)
-
     Votacion = tk.Tk()
     window_width = 600
     window_height = 600
@@ -22,3 +19,4 @@ def votacion(candidatos):
 
     Votacion.title("Sistema de Votación Automatizado - Votación")
     Votacion.mainloop()
+

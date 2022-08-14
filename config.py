@@ -1,6 +1,27 @@
 import tkinter as tk
 from tkinter import ttk
 from votacion import *
+
+# Definicion de class candidato
+# Guarda Atributos de los candidatos
+# Para poder generar un boton en votación con sus datos
+class Candidato:
+    def __init__(self, nom, cargo, lista):
+        self.nom = nom      #nombre del candidato
+        self.cargo = cargo  #cargo al que se candidata
+        self.lista = lista  #lista del candidato
+
+    def __str__(self):
+        #return f"{self.name} is {self.age} years old"
+        return f"nombre del candidato: {self.nom}\ncargo del candidato: {self.cargo}\nlista del candidato: {self.lista}"
+
+    def crear_frame_candidato(self, contenedor):
+        frame = ttk.Frame(contenedor)
+
+        #configuracion de la grid
+        # frame.rowconfigure(0, weight=2)
+
+
 def config():
     print("inicio ejecucion Config()")
 
@@ -59,16 +80,3 @@ def config():
 
     Config.mainloop()
 
-
-# Definicion de class candidato
-# Guarda Atributos de los candidatos
-# Para poder generar un boton en votación con sus datos
-class Candidato:
-    def __init__(self, nom, cargo, lista):
-        self.nom = nom      #nombre del candidato
-        self.cargo = cargo  #cargo al que se candidata
-        self.lista = lista  #lista del candidato
-
-    def __str__(self):
-        #return f"{self.name} is {self.age} years old"
-        return f"nombre del candidato: {self.nom}\ncargo del candidato: {self.cargo}\nlista del candidato: {self.lista}"
