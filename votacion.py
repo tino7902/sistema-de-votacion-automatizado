@@ -1,7 +1,11 @@
 import tkinter as tk
 from tkinter import ttk
+from config import *
 
-def votacion():
+def votacion(candidatos):
+    for candidato in candidatos:
+            print(candidato)
+
     Votacion = tk.Tk()
     window_width = 600
     window_height = 600
