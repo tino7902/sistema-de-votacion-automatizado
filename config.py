@@ -19,7 +19,17 @@ class Candidato:
         frame = ttk.Frame(contenedor)
 
         #configuracion de la grid
-        # frame.rowconfigure(0, weight=2)
+        frame.rowconfigure(0, weight=1)
+        frame.rowconfigure(1, weight=1)
+        frame.rowconfigure(2, weight=1)
+
+        ttk.Label(frame, text=f"Nombre del candidato: {self.nom}").grid(column=0, row=0, padx=5, pady=5)
+
+        ttk.Label(frame, text=f"Nombre del candidato: {self.nom}").grid(column=0, row=1, padx=5, pady=5)
+
+        ttk.Label(frame, text=f"Nombre del candidato: {self.lista}").grid(column=0, row=2, padx=5, pady=5)
+
+        return frame
 
 
 def config():
