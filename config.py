@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 from votacion import *
+from bloqueo import *
 
 # Definicion de class candidato
 # Guarda Atributos de los candidatos
@@ -56,17 +57,23 @@ def config():
     Config.columnconfigure(1, weight=3)
 
     #AÑADIR CANDIDATOS
-    ttk.Label(Config, text="Ingresar nombre y apellido del candidato:").grid(column=0, row=0, padx=5, pady=5, sticky=tk.E)
-    ttk.Label(Config, text="Ingresar cargo al que se candidata:").grid(column=0, row=1, padx=5, pady=5, sticky=tk.E)
-    ttk.Label(Config, text="Ingresar lista del candidato:").grid(column=0, row=2, padx=5, pady=5, sticky=tk.E)
+    ttk.Label(Config, text="Ingresar lista del candidato:").grid(column=0, row=0, padx=5, pady=5, sticky=tk.E)
+
+    ttk.Label(Config, text="Ingresar nombre y apellido del candidato:").grid(column=0, row=1, padx=5, pady=5, sticky=tk.E)
+    ttk.Label(Config, text="Ingresar cargo al que se candidata:").grid(column=0, row=2, padx=5, pady=5, sticky=tk.E)
+    ttk.Label(Config, text="Ingresar lista del candidato:").grid(column=0, row=3, padx=5, pady=5, sticky=tk.E)
+
+    padron = tk.StringVar()
+    cant_votates_entry = ttk.Entry(Config, textvariable=padron).grid(column=1, row=0, padx=5, pady=5, sticky=tk.EW)
 
     nom_can = tk.StringVar()
-    ttk.Entry(Config, textvariable=nom_can).grid(column=1, row=0, padx=5, pady=5, sticky=tk.EW)
+    ttk.Entry(Config, textvariable=nom_can).grid(column=1, row=1, padx=5, pady=5, sticky=tk.EW)
     cargo_can = tk.StringVar()
-    ttk.Entry(Config, textvariable=cargo_can).grid(column=1, row=1, padx=5, pady=5, sticky=tk.EW)
+    ttk.Entry(Config, textvariable=cargo_can).grid(column=1, row=2, padx=5, pady=5, sticky=tk.EW)
     lista_can = tk.StringVar()
-    ttk.Entry(Config, textvariable=lista_can).grid(column=1, row=2, padx=5, pady=5, sticky=tk.EW)
+    ttk.Entry(Config, textvariable=lista_can).grid(column=1, row=3, padx=5, pady=5, sticky=tk.EW)
 
+    #Boton Agregar Candidatos
     candidatos = []
     def agregar_candidato():
         candidatos.append(Candidato(nom_can.get(), cargo_can.get(), lista_can.get()))
@@ -76,17 +83,20 @@ def config():
         nom_can.set("")
         cargo_can.set("")
         lista_can.set("")
+    agr_cand_bot = ttk.Button(Config, text="agregar candidato", command=agregar_candidato, state="disabled").grid(column=1, row=5, padx=5, pady=5)
 
 
-    ttk.Button(Config, text="agregar candidato", command=agregar_candidato).grid(column=1, row=3, padx=5, pady=5)
+    #Boton Cantidad Votantes
+    def cantidad_votantes():
+        cantidad_votantes = padron.get()
+    ttk.Button(Config, text="establecer cantidad de votantes", command=cantidad_votantes,).grid(column=0, columnspan=2, row=4, padx=5, pady=5)
 
 
-    #INICIAR VOTACION
+    #Boton Iniciar Votacion
     def bot_vot():
         Config.destroy()
-        votacion(candidatos)
-
-    ttk.Button(Config, text="iniciar votación", command=bot_vot).grid(column=0, row=3, padx=5, pady=5)
+        bloqueo(cantidad_votantes, candidatos)
+    ttk.Button(Config, text="iniciar votación", command=bot_vot).grid(column=0, row=5, padx=5, pady=5)
 
     Config.mainloop()
 

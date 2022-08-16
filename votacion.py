@@ -1,11 +1,12 @@
 import tkinter as tk
 from tkinter import ttk
+from bloqueo import *
 from config import *
 
 def votacion(candidatos):
     Votacion = tk.Tk()
-    # window_width = 600
-    # window_height = 600
+    window_width = 600
+    window_height = 600
 
     #Centrar Ventana
     ## conseguir dimensiones de la pantalla

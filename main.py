@@ -3,7 +3,9 @@ import tkinter as tk
 from tkinter import ttk
 
 def main():
-    config()
+    candidatos = []
+    cantidad_votantes = 0
+    bloqueo(cantidad_votantes, candidatos)
 
 if __name__ == '__main__':
     main()
