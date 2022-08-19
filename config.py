@@ -1,8 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 from votacion import *
-from bloqueo import *
-
+from main import bloqueo, generador_contra
 # Definicion de class candidato
 # Guarda Atributos de los candidatos
 # Para poder generar un boton en votación con sus datos
@@ -57,14 +56,14 @@ def config():
     Config.columnconfigure(1, weight=3)
 
     #AÑADIR CANDIDATOS
-    ttk.Label(Config, text="Ingresar lista del candidato:").grid(column=0, row=0, padx=5, pady=5, sticky=tk.E)
+    ttk.Label(Config, text="Ingresar cantidad de votantes:").grid(column=0, row=0, padx=5, pady=5, sticky=tk.E)
 
     ttk.Label(Config, text="Ingresar nombre y apellido del candidato:").grid(column=0, row=1, padx=5, pady=5, sticky=tk.E)
     ttk.Label(Config, text="Ingresar cargo al que se candidata:").grid(column=0, row=2, padx=5, pady=5, sticky=tk.E)
     ttk.Label(Config, text="Ingresar lista del candidato:").grid(column=0, row=3, padx=5, pady=5, sticky=tk.E)
 
-    padron = tk.StringVar()
-    cant_votates_entry = ttk.Entry(Config, textvariable=padron).grid(column=1, row=0, padx=5, pady=5, sticky=tk.EW)
+    Padron = tk.StringVar()
+    cant_votates_entry = ttk.Entry(Config, textvariable=Padron).grid(column=1, row=0, padx=5, pady=5, sticky=tk.EW)
 
     nom_can = tk.StringVar()
     ttk.Entry(Config, textvariable=nom_can).grid(column=1, row=1, padx=5, pady=5, sticky=tk.EW)
@@ -83,19 +82,25 @@ def config():
         nom_can.set("")
         cargo_can.set("")
         lista_can.set("")
-    agr_cand_bot = ttk.Button(Config, text="agregar candidato", command=agregar_candidato, state="disabled").grid(column=1, row=5, padx=5, pady=5)
+    agr_cand_bot = ttk.Button(Config, text="agregar candidato", command=agregar_candidato).grid(column=1, row=5, padx=5, pady=5)
 
 
     #Boton Cantidad Votantes
+    contras= []
     def cantidad_votantes():
-        cantidad_votantes = padron.get()
+        cant_vot = int(Padron.get())
+        for i in range(cant_vot):
+            contras[i] = generador_contra()
+
     ttk.Button(Config, text="establecer cantidad de votantes", command=cantidad_votantes,).grid(column=0, columnspan=2, row=4, padx=5, pady=5)
 
 
     #Boton Iniciar Votacion
     def bot_vot():
+        print(contras)
         Config.destroy()
-        bloqueo(cantidad_votantes, candidatos)
+        bloqueo(contras, candidatos)
+        # votacion(candidatos)
     ttk.Button(Config, text="iniciar votación", command=bot_vot).grid(column=0, row=5, padx=5, pady=5)
 
     Config.mainloop()

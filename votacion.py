@@ -1,6 +1,5 @@
 import tkinter as tk
 from tkinter import ttk
-from bloqueo import *
 from config import *
 
 def votacion(candidatos):
