@@ -11,7 +11,7 @@ def main():
     # config()
 
 def generador_contra():
-    letras = string.ascii_letters
+    letras = string.ascii_lowercase
     contra_generada = ''.join(random.choice(letras) for i in range(8))
     return contra_generada
 
@@ -54,8 +54,9 @@ def bloqueo(contras, candidatos):
             print("contraseña resultados")
         else:
             for i in range(len(contra_votantes)):
-                if contra_ingresada == contra_votantes[i]:
+                if contra_ingresada == contras[i]:
                     print("contraseña correcta")
+                    votacion(candidatos)
                 else:
                     print("contraseña equivocada")
     ttk.Button(Bloqueo, text="aceptar", command=chequear_contra).grid(column=1, row=1, padx=5, pady=5, sticky=tk.E)

@@ -63,7 +63,7 @@ def config():
     ttk.Label(Config, text="Ingresar lista del candidato:").grid(column=0, row=3, padx=5, pady=5, sticky=tk.E)
 
     Padron = tk.StringVar()
-    cant_votates_entry = ttk.Entry(Config, textvariable=Padron).grid(column=1, row=0, padx=5, pady=5, sticky=tk.EW)
+    ttk.Entry(Config, textvariable=Padron).grid(column=1, row=0, padx=5, pady=5, sticky=tk.EW)
 
     nom_can = tk.StringVar()
     ttk.Entry(Config, textvariable=nom_can).grid(column=1, row=1, padx=5, pady=5, sticky=tk.EW)
@@ -82,21 +82,27 @@ def config():
         nom_can.set("")
         cargo_can.set("")
         lista_can.set("")
-    agr_cand_bot = ttk.Button(Config, text="agregar candidato", command=agregar_candidato).grid(column=1, row=5, padx=5, pady=5)
+    ttk.Button(Config, text="agregar candidato", command=agregar_candidato).grid(column=1, row=5, padx=5, pady=5)
 
 
     #Boton Cantidad Votantes
-    contras= []
+    global contras
     def cantidad_votantes():
+        global contras
         cant_vot = int(Padron.get())
+        print(cant_vot)
+        contras = [""] * cant_vot
+        print(contras)
         for i in range(cant_vot):
             contras[i] = generador_contra()
+        print(contras)
 
     ttk.Button(Config, text="establecer cantidad de votantes", command=cantidad_votantes,).grid(column=0, columnspan=2, row=4, padx=5, pady=5)
 
 
     #Boton Iniciar Votacion
     def bot_vot():
+        global contras
         print(contras)
         Config.destroy()
         bloqueo(contras, candidatos)
