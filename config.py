@@ -15,7 +15,7 @@ class Candidato:
         #return f"{self.name} is {self.age} years old"
         return f"nombre del candidato: {self.nom}\ncargo del candidato: {self.cargo}\nlista del candidato: {self.lista}"
 
-    def crear_frame_candidato(self, contenedor):
+    def crear_frame_candidato(self, contenedor, num):
         frame = ttk.Frame(contenedor)
 
         #configuracion de la grid
@@ -25,13 +25,14 @@ class Candidato:
 
         ttk.Label(frame, text=f"Nombre del candidato: {self.nom}").grid(column=0, row=0, padx=5, pady=5)
 
-        ttk.Label(frame, text=f"Nombre del candidato: {self.nom}").grid(column=0, row=1, padx=5, pady=5)
+        ttk.Label(frame, text=f"Cargo al que se postula: {self.cargo}").grid(column=0, row=1, padx=5, pady=5)
 
-        ttk.Label(frame, text=f"Nombre del candidato: {self.lista}").grid(column=0, row=2, padx=5, pady=5)
+        ttk.Label(frame, text=f"Lista: {self.lista}").grid(column=0, row=2, padx=5, pady=5)
 
         def votar_por():
-            global quien
-            
+            global elegido
+            elegido = num+1
+
         ttk.Button(frame, text=f"Votar por: {self.nom}", command=votar_por).grid(column=0, row=3, padx=5, pady=5)
 
         return frame
@@ -94,6 +95,7 @@ def config():
     global contras
     def cantidad_votantes():
         global contras
+        global cant_vot
         cant_vot = int(Padron.get())
         print(cant_vot)
         contras = [""] * cant_vot
