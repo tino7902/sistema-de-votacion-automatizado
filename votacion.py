@@ -27,7 +27,7 @@ def votacion(candidatos):
 
     def confirmar_voto():
         pass
-    ttk.Button(text="confirmar voto", command=confirmar_voto).grid(column=0, row=1, sticky=tk.EW)
+    ttk.Button(Votacion, text="CONFIRMAR VOTO", command=confirmar_voto)
 
     Votacion.mainloop()
 

@@ -29,6 +29,11 @@ class Candidato:
 
         ttk.Label(frame, text=f"Nombre del candidato: {self.lista}").grid(column=0, row=2, padx=5, pady=5)
 
+        def votar_por():
+            global quien
+            
+        ttk.Button(frame, text=f"Votar por: {self.nom}", command=votar_por).grid(column=0, row=3, padx=5, pady=5)
+
         return frame
 
 
