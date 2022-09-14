@@ -15,7 +15,8 @@ class Candidato:
         #return f"{self.name} is {self.age} years old"
         return f"nombre del candidato: {self.nom}\ncargo del candidato: {self.cargo}\nlista del candidato: {self.lista}"
 
-    def crear_frame_candidato(self, contenedor, num):
+    def crear_frame_candidato(self, contenedor):
+        global elegido
         frame = ttk.Frame(contenedor)
 
         #configuracion de la grid
@@ -31,7 +32,7 @@ class Candidato:
 
         def votar_por():
             global elegido
-            elegido = num+1
+            elegido = self.num
 
         ttk.Button(frame, text=f"Votar por: {self.nom}", command=votar_por).grid(column=0, row=3, padx=5, pady=5)
 

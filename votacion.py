@@ -5,6 +5,7 @@ from config import *
 
 def votacion(candidatos):
     global votos
+    global elegido
     votos = [""] * (len(candidatos)+1)
 
     Votacion = tk.Tk()
@@ -27,7 +28,7 @@ def votacion(candidatos):
     Votacion.rowconfigure(1, weight=1)
 
     for i in range(len(candidatos)):
-        candidatos[i].crear_frame_candidato(Votacion, i).grid(column=i, row=0, padx=5, pady=5)
+        candidatos[i].crear_frame_candidato(Votacion).grid(column=i, row=0, padx=5, pady=5)
     
     def voto_blanco():
         global votos

@@ -41,7 +41,7 @@ def bloqueo(contras, candidatos):
     ttk.Label(Bloqueo, text="Ingresar Contraseña Personal:").grid(column=0, row=0, padx=5, pady=5, sticky=tk.E)
 
     contra = tk.StringVar()
-    ttk.Entry(Bloqueo, textvariable=contra).grid(column=1, row=0, padx=5, pady=5, sticky=tk.EW)
+    ttk.Entry(Bloqueo, textvariable=contra, show="*").grid(column=1, row=0, padx=5, pady=5, sticky=tk.EW)
 
     def chequear_contra():
         contra_ingresada =contra.get()
@@ -49,13 +49,15 @@ def bloqueo(contras, candidatos):
             Bloqueo.destroy()
             print("contraseña config")
             config()
-            pass
+            
         elif contra_ingresada == "87654321":
             print("contraseña resultados")
         else:
             for i in range(len(contra_votantes)):
                 if contra_ingresada == contras[i]:
                     print("contraseña correcta")
+                    contras.remove(contra_ingresada)
+                    print(contras)
                     votacion(candidatos)
                 else:
                     print("contraseña equivocada")
