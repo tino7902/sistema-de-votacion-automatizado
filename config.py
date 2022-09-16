@@ -6,10 +6,11 @@ from main import bloqueo, generador_contra
 # Guarda Atributos de los candidatos
 # Para poder generar un boton en votación con sus datos
 class Candidato:
-    def __init__(self, nom, cargo, lista):
+    def __init__(self, nom, cargo, lista, num):
         self.nom = nom      #nombre del candidato
         self.cargo = cargo  #cargo al que se candidata
         self.lista = lista  #lista del candidato
+        self.num = num
 
     def __str__(self):
         #return f"{self.name} is {self.age} years old"
@@ -31,8 +32,7 @@ class Candidato:
         ttk.Label(frame, text=f"Lista: {self.lista}").grid(column=0, row=2, padx=5, pady=5)
 
         def votar_por():
-            global elegido
-            elegido = self.num
+            print("no funca")
 
         ttk.Button(frame, text=f"Votar por: {self.nom}", command=votar_por).grid(column=0, row=3, padx=5, pady=5)
 
@@ -81,8 +81,12 @@ def config():
 
     #Boton Agregar Candidatos
     candidatos = []
+    global i
+    i = 1
     def agregar_candidato():
-        candidatos.append(Candidato(nom_can.get(), cargo_can.get(), lista_can.get()))
+        global i
+        candidatos.append(Candidato(nom_can.get(), cargo_can.get(), lista_can.get(), i))
+        i = i + 1
         for candidato in candidatos:
             print(candidato)
         print("fin de lista de candidatos\n")

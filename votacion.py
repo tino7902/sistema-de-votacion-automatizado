@@ -1,12 +1,11 @@
-from ssl import VERIFY_ALLOW_PROXY_CERTS
 import tkinter as tk
 from tkinter import ttk
 from config import *
 
 def votacion(candidatos):
     global votos
-    global elegido
-    votos = [""] * (len(candidatos)+1)
+    
+    votos = [0] * (len(candidatos)+1)
 
     Votacion = tk.Tk()
     window_width = 600
@@ -32,15 +31,15 @@ def votacion(candidatos):
     
     def voto_blanco():
         global votos
-        global elegido
         elegido = 0
     ttk.Button(Votacion, text="VOTAR \nEN \nBLANCO", command=voto_blanco).grid(column=len(candidatos)+1, row=0, padx=5, pady=5)
 
     def confirmar_voto():
         # global votos
         # global cant_vot
-        global elegido
+        
         print(elegido)
+        votos[elegido] = votos[elegido]+1
     ttk.Button(Votacion, text="CONFIRMAR VOTO", command=confirmar_voto).grid(column=0, row=1, padx=5, pady=5)
 
     Votacion.mainloop()
