@@ -12,11 +12,9 @@ class Candidato:
         self.lista = lista  #lista del candidato
 
     def __str__(self):
-        #return f"{self.name} is {self.age} years old"
         return f"nombre del candidato: {self.nom}\ncargo del candidato: {self.cargo}\nlista del candidato: {self.lista}"
 
-    def crear_frame_candidato(self, contenedor):
-        global elegido
+    def crear_frame_candidato(self, contenedor, id_candidato):
         frame = ttk.Frame(contenedor)
 
         #configuracion de la grid
@@ -31,8 +29,12 @@ class Candidato:
         ttk.Label(frame, text=f"Lista: {self.lista}").grid(column=0, row=2, padx=5, pady=5)
 
         def votar_por():
-            global elegido
-            elegido = self.num
+            with open("resultados_parciales.txt", mode="r") as f:
+                f.seek(0)
+                contenido = f.readlines()               #leer el archivo
+                contenido[0] = str(f"{id_candidato}\n") #modificar la primera linea con el id del candidato elegido
+                print(contenido)
+                f.writelines(contenido)                 #guardar los cambios
 
         ttk.Button(frame, text=f"Votar por: {self.nom}", command=votar_por).grid(column=0, row=3, padx=5, pady=5)
 

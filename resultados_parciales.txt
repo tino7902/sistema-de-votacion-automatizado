@@ -1,0 +1,2 @@
+elegido: 
+resultado_parcial: 0resultado_parcial: 
