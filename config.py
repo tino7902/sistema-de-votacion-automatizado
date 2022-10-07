@@ -32,6 +32,7 @@ class Candidato:
             with open("resultados_parciales.txt", mode="r") as f:
                 f.seek(0)
                 contenido = f.readlines()               #leer el archivo
+            with open("resultados_parciales.txt", mode="w") as f:
                 contenido[0] = str(f"{id_candidato}\n") #modificar la primera linea con el id del candidato elegido
                 print(contenido)
                 f.writelines(contenido)                 #guardar los cambios

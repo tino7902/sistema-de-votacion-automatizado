@@ -38,12 +38,16 @@ def votacion(candidatos):
     ttk.Button(Votacion, text="VOTAR \nEN \nBLANCO", command=voto_blanco).grid(column=len(candidatos)+1, row=0, padx=5, pady=5)
 
     def confirmar_voto():
-        with open("resultados_parciales.txt", mode="r+") as f:
+        with open("resultados_parciales.txt", mode="r") as f:
+            global votos
             f.seek(0)
             contenido = f.readlines()
             elegido = int(contenido[0])
+            print(votos)
             votos[elegido] = votos[elegido]+1
+            print(votos)
             contenido[1] = votos
+        with open("resultados_parciales.txt", mode="w") as f:
             f.writelines(contenido)
             contenido_nuevo = f.readlines()
             print(contenido_nuevo)
