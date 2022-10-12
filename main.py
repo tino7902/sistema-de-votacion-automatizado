@@ -7,9 +7,9 @@ import random
 def main():
     candidatos = []
     contras = []
-    # with open("resultados_parciales.txt", mode="r+") as f:
-    #     f.write("elegido: \nresultado_parcial: ")
-    #     f.seek(0)
+    with open("resultados_parciales.txt", mode="r+") as f:
+        f.write("elegido: \nresultado_parcial: \n")
+        f.seek(0)
     bloqueo(contras, candidatos)
     # config()
 
