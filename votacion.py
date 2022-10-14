@@ -1,13 +1,10 @@
+from os import truncate
 from ssl import VERIFY_ALLOW_PROXY_CERTS
 import tkinter as tk
 from tkinter import ttk
 from config import *
 
 def votacion(candidatos):
-    global votos
-
-    votos = [0] * (len(candidatos)+1)
-
     Votacion = tk.Tk()
 
     Votacion.title("Sistema de Votación Automatizado - Votación")
@@ -24,16 +21,24 @@ def votacion(candidatos):
             print(contenido)
             f.writelines(contenido)                 #guardar los cambios
     ttk.Button(Votacion, text="VOTAR \nEN \nBLANCO", command=voto_blanco).grid(column=len(candidatos)+1, row=0, padx=5, pady=5)
-
-    def confirmar_voto():
+    
+    def confirmar_voto():            
         with open("resultados_parciales.txt", mode="r") as f:
-            global votos
             f.seek(0)
             contenido = f.readlines()
+            if contenido[2] == "primera vez\n":
+                global votos
+                votos = [0] * (len(candidatos)+1)
+                contenido[2] = "\n\n"
+            else:
+                votos = truncate(contenido[1])
             elegido = int(contenido[0])
+            temp = int(votos[elegido]) + 1
+            votos[elegido] = temp
+            print(temp)
+            print("-----------------")
             print(votos)
-            votos[elegido] = votos[elegido]+1
-            print(votos)
+            print("---------------")
             contenido[1] = str(votos)
         with open("resultados_parciales.txt", mode="w") as f:
             f.writelines(contenido)

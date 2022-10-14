@@ -8,7 +8,7 @@ def main():
     candidatos = []
     contras = []
     with open("resultados_parciales.txt", mode="r+") as f:
-        f.write("elegido: \nresultado_parcial: \n")
+        f.write("elegido: \nresultado_parcial: \nprimera vez\n")
         f.seek(0)
     bloqueo(contras, candidatos)
     # config()
