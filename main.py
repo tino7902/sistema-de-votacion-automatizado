@@ -1,4 +1,5 @@
 from config import *
+from votacion import *
 import tkinter as tk
 from tkinter import ttk
 import string

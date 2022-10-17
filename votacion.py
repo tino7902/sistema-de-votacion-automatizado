@@ -24,28 +24,23 @@ def votacion(candidatos):
     
     def confirmar_voto():            
         with open("resultados_parciales.txt", mode="r") as f:
-            f.seek(0)
             contenido = f.readlines()
-            if contenido[2] == "primera vez\n":
-                global votos
-                votos = [0] * (len(candidatos)+1)
-                contenido[2] = "\n\n"
-            else:
-                votos = truncate(contenido[1])
-            elegido = int(contenido[0])
-            temp = int(votos[elegido]) + 1
-            votos[elegido] = temp
+        if contenido[2] == "primera vez\n":
+            global votos
+            votos = [0] * (len(candidatos)+1)
+            contenido[2] = "\n\n"
+        else:
+            temp = contenido[1].strip("[],")
+            votos = temp.split()
             print(temp)
-            print("-----------------")
-            print(votos)
-            print("---------------")
-            contenido[1] = str(votos)
-        with open("resultados_parciales.txt", mode="w") as f:
-            f.writelines(contenido)
-        with open("resultados_parciales.txt", mode="r") as f:
-            contenido_nuevo = f.readlines()
-            print(contenido_nuevo)
-        
+        print(f"votos antes {votos}")
+        elegido = contenido[0]
+
+        temp = int(votos[int(elegido)])
+        tempo = temp +1
+        votos[int(elegido)] = tempo
+        contenido[1] = str(votos)
+
         Votacion.destroy()
 
     ttk.Button(Votacion, text="CONFIRMAR VOTO", command=confirmar_voto).grid(column=0, row=1, padx=5, pady=5)
