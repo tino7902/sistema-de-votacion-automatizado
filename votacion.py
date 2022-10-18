@@ -28,18 +28,17 @@ def votacion(candidatos):
         if contenido[2] == "primera vez\n":
             global votos
             votos = [0] * (len(candidatos)+1)
-            contenido[2] = "\n\n"
+            elegido = contenido[0]
+            votos[int(elegido)] =+ 1
+            contenido[1] = str(votos)
+            contenido[2] = ""
         else:
-            temp = contenido[1].strip("[],")
-            votos = temp.split()
-            print(temp)
-        print(f"votos antes {votos}")
-        elegido = contenido[0]
-
-        temp = int(votos[int(elegido)])
-        tempo = temp +1
-        votos[int(elegido)] = tempo
-        contenido[1] = str(votos)
+            votos = contenido[1]
+            votos = votos.replace("[", "")
+            votos = votos.replace("]", "")
+            votos = votos.replace(",", "")
+            votos = votos.replace("\n", "")
+            votos = votos.split(" ")
 
         Votacion.destroy()
 
