@@ -1,8 +1,7 @@
-from os import truncate
-from ssl import VERIFY_ALLOW_PROXY_CERTS
 import tkinter as tk
 from tkinter import ttk
 from config import *
+from operator import add
 
 def votacion(candidatos):
     Votacion = tk.Tk()
@@ -21,24 +20,46 @@ def votacion(candidatos):
             print(contenido)
             f.writelines(contenido)                 #guardar los cambios
     ttk.Button(Votacion, text="VOTAR \nEN \nBLANCO", command=voto_blanco).grid(column=len(candidatos)+1, row=0, padx=5, pady=5)
-    
-    def confirmar_voto():            
+
+    def confirmar_voto():
+        #guardar el contenido del txt en una list contenido
         with open("resultados_parciales.txt", mode="r") as f:
             contenido = f.readlines()
-        if contenido[2] == "primera vez\n":
-            global votos
-            votos = [0] * (len(candidatos)+1)
-            elegido = contenido[0]
-            votos[int(elegido)] =+ 1
-            contenido[1] = str(votos)
-            contenido[2] = ""
+
+        #list voto_nuevo, cada elemento es 0 menos el del voto elegido
+        voto_nuevo = [0] * (len(candidatos)+1)
+        elegido = contenido[0]
+        voto_nuevo[int(elegido)] =+ 1
+
+        # si es el primer voto, cada elemento de list votos_antes es 0
+        if contenido[1] == "primera vez":
+            votos_antes = [0] * (len(candidatos)+1)
+
+        #sino se lee desde el txt
         else:
-            votos = contenido[1]
-            votos = votos.replace("[", "")
-            votos = votos.replace("]", "")
-            votos = votos.replace(",", "")
-            votos = votos.replace("\n", "")
-            votos = votos.split(" ")
+            #se lee los votos de antes
+            votos_antes = contenido[1]
+            #se eliminan los carácteres extra
+            votos_antes = votos_antes.replace("]", "")
+            votos_antes = votos_antes.replace("[", "")
+            votos_antes = votos_antes.replace(",", "")
+            votos_antes = votos_antes.replace("\n", "")
+            #se convierte a una lista
+            votos_antes = votos_antes.split(" ")
+            #se convierten los elementos de la lista al tipo int
+            votos_antes = list(map(int, votos_antes))
+
+        #se suman los votos viejos más el nuevo
+        print(voto_nuevo)
+        print(votos_antes)
+        votos_ahora = list(map(add, votos_antes, voto_nuevo))
+        print(votos_ahora)
+
+        #se actualiza el txt
+        contenido[1] = f"{str(votos_ahora)}\n"
+        print(contenido)
+        with open("resultados_parciales.txt", mode="w") as f:
+            f.writelines(contenido)
 
         Votacion.destroy()
 
