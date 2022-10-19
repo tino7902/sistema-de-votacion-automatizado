@@ -74,16 +74,16 @@ def bloqueo(contras, candidatos):
         '''Chequea la contraseña ingresada y abre la ventana correspondiente.'''
         contra_ingresada = contra.get()
         contra.set("")
-        #ADMIN
+        # ADMIN
         if contra_ingresada == "admin":
             Bloqueo.destroy()
             print("contraseña config")
             config.config(candidatos)
-        #RESULTADOS
+        # RESULTADOS
         elif contra_ingresada == "resultados":
             print("contraseña resultados")
             resultados()
-        #VOTANTES
+        # VOTANTES
         else:
             for i in range(len(contras)):
                 if contra_ingresada == contras[i]:

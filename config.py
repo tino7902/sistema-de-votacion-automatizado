@@ -152,6 +152,7 @@ def config(candidatos):
 
     # Boton Cantidad Votantes
     global contras
+
     def cantidad_votantes():
         global contras
         global cant_vot
