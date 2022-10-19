@@ -1,0 +1,541 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"votos",
+				"votos_ahora"
+			],
+			[
+				"voto",
+				"voto_nuevo"
+			],
+			[
+				"con",
+				"contenido_nuevo"
+			],
+			[
+				"vota",
+				"votar_por"
+			],
+			[
+				"can",
+				"cantidad_votantes"
+			],
+			[
+				"contr",
+				"contraseña_votantes"
+			],
+			[
+				"contra",
+				"contraseña"
+			],
+			[
+				"blqoue",
+				"bloqueo"
+			],
+			[
+				"candid",
+				"candidatos"
+			],
+			[
+				"list",
+				"lista_can"
+			],
+			[
+				"car",
+				"car_can"
+			],
+			[
+				"v",
+				"Votacion"
+			],
+			[
+				"if",
+				"ifmain"
+			],
+			[
+				"dir",
+				"dir_resultados"
+			],
+			[
+				"dir_",
+				"dir_resultados"
+			],
+			[
+				"bt",
+				"btn_iniciar"
+			],
+			[
+				"wi",
+				"width"
+			],
+			[
+				"fon",
+				"font-style"
+			],
+			[
+				"li",
+				"li"
+			],
+			[
+				"s",
+				"box-shadow"
+			],
+			[
+				"re",
+				"resultado"
+			],
+			[
+				"imp",
+				"imprimir"
+			],
+			[
+				"col",
+				"columna_mayor"
+			],
+			[
+				"fila",
+				"fila_mayor"
+			],
+			[
+				"le",
+				"leer_matriz"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "sistema-de-votacion-automatizado.sublime-project",
+			"settings":
+			{
+				"buffer_size": 45,
+				"line_ending": "Windows"
+			},
+			"undo_stack":
+			[
+			]
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+		[
+			[
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					""
+				],
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					"Run"
+				]
+			],
+			[
+				"Packages/C++/C++ Single File.sublime-build",
+				"Run"
+			]
+		],
+		[
+			[
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					""
+				],
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					"Run"
+				],
+				[
+					"Packages/User/c++-terminus.sublime-build",
+					""
+				],
+				[
+					"Packages/User/c++-terminus.sublime-build",
+					"Run"
+				]
+			],
+			[
+				"Packages/User/c++-terminus.sublime-build",
+				"Run"
+			]
+		],
+		[
+			[
+				[
+					"Packages/Python/Python.sublime-build",
+					""
+				],
+				[
+					"Packages/Python/Python.sublime-build",
+					"Syntax Check"
+				]
+			],
+			[
+				"Packages/Python/Python.sublime-build",
+				""
+			]
+		],
+		[
+			[
+				[
+					"Packages/Python/Python.sublime-build",
+					""
+				],
+				[
+					"Packages/Python/Python.sublime-build",
+					"Syntax Check"
+				],
+				[
+					"Packages/User/python-terminus.sublime-build",
+					""
+				],
+				[
+					"Packages/User/python-terminus.sublime-build",
+					"Syntax Check"
+				]
+			],
+			[
+				"Packages/User/python-terminus.sublime-build",
+				""
+			]
+		]
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Disable Package"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"keys",
+				"Preferences: Key Bindings"
+			],
+			[
+				"spli",
+				"File: Split View"
+			],
+			[
+				"prefere",
+				"Preferences: Settings"
+			],
+			[
+				"packa",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: ins",
+				"Package Control: Install Package"
+			],
+			[
+				"key",
+				"Preferences: Key Bindings"
+			],
+			[
+				"ke",
+				"Preferences: Key Bindings"
+			],
+			[
+				"vcf",
+				"View Package File"
+			],
+			[
+				"pac",
+				"Package Control: Install Package"
+			],
+			[
+				"save",
+				"Project: Save As"
+			],
+			[
+				"powe",
+				"Set Syntax: PowerShell"
+			],
+			[
+				"Wor",
+				"Word Wrap: Toggle"
+			],
+			[
+				"pytho",
+				"Build With: Python - Syntax Check"
+			],
+			[
+				"pyth",
+				"Set Syntax: Python"
+			],
+			[
+				"py",
+				"Set Syntax: Python"
+			],
+			[
+				"bu",
+				"Build: New Build System"
+			],
+			[
+				"them",
+				"UI: Select Color Scheme"
+			]
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 142.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/C/Users/tino/OneDrive/Documents/Proyectos/sistema-de-votacion-automatizado"
+	],
+	"file_history":
+	[
+		"/C/Users/tino/OneDrive/Documents/Proyectos/sistema-de-votacion-automatizado/votacion.py",
+		"/C/Users/tino/OneDrive/Documents/Proyectos/sistema-de-votacion-automatizado/config.py",
+		"/C/Users/tino/OneDrive/Documents/Proyectos/sistema-de-votacion-automatizado/main.py",
+		"/C/Users/tino/OneDrive/Documents/Proyectos/sistema-de-votacion-automatizado/sistema-de-votacion-automatizado.sublime-workspace",
+		"/C/Users/tino/AppData/Roaming/Sublime Text/Packages/Anaconda/Default (Windows).sublime-keymap",
+		"/C/Users/tino/AppData/Roaming/Sublime Text/Packages/User/Anaconda.sublime-settings",
+		"/C/Users/tino/AppData/Roaming/Sublime Text/Packages/Jedi - Python autocompletion/sublime_jedi.sublime-settings",
+		"/C/Users/tino/OneDrive/Documents/Proyectos/sistema-de-votacion-automatizado/resultados_parciales.txt",
+		"/C/Users/tino/AppData/Local/Temp/Temp1_ARESTerrain.zip/ARES Terrain/readme.txt",
+		"/C/Program Files (x86)/The Binding of Isaac Rebirth Repentance/savedatapath.txt",
+		"/C/Users/tino/OneDrive/Documents/Proyectos/sistema-de-votacion-automatizado/bloqueo.py",
+		"/C/Users/tino/$profile",
+		"/C/Users/tino/OneDrive/Documents/Proyectos/sistema-de-votacion-automatizado/interfaz/gui.py",
+		"/C/Users/tino/OneDrive/Documents/Proyectos/sistema-de-votacion-automatizado/README.md",
+		"/C/Users/tino/OneDrive/Documents/Proyectos/Sistema de Votación Automática/main.py",
+		"/C/Users/tino/Torrents/Crusader.Kings.III.Northern.Lords.Update.v1.3.1-CODEX/Update/patchnotes.txt",
+		"/C/Users/tino/OneDrive/Documents/Proyectos/proyectoTIM/main.spec",
+		"/C/Users/tino/OneDrive/Documents/Proyectos/proyectoTIM/.gitignore",
+		"/C/Users/tino/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json",
+		"/C/Users/tino/OneDrive/Configs/wt/settings.txt",
+		"/C/Users/Tino/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Startup/hotkeys.ahk",
+		"/C/Users/Tino/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Startup/prueba.ahk",
+		"/C/Users/Tino/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Startup/Workspaces.ahk",
+		"/C/Users/Tino/AppData/Roaming/Sublime Text/Packages/User/AutoHotkey.sublime-settings",
+		"/C/Users/Tino/AppData/Roaming/Sublime Text/Packages/AutoHotkey/AutoHotkey.sublime-settings",
+		"/C/Users/Tino/OneDrive - Colegio San Jose/2do Curso Infor/Algorítmia/Python/octubre/matrices y vectores combinados 3/ejercicio 1 - santino gianninoto.py",
+		"/C/Users/Tino/OneDrive - Colegio San Jose/2do Curso Infor/Infor/Lab. Software/C++/programas/TAD 16/TAD16_01_SantinoGianninoto.cpp",
+		"/C/Users/Tino/AppData/Roaming/Sublime Text/Packages/User/c++-terminus.sublime-build",
+		"/C/Users/Tino/AppData/Roaming/Sublime Text/Packages/User/python-terminus.sublime-build",
+		"/C/Users/Tino/AppData/Roaming/Sublime Text/Packages/Python/Python.sublime-build",
+		"/C/Users/Tino/AppData/Roaming/Sublime Text/Packages/C++/C++ Single File.sublime-build",
+		"/C/Users/Tino/OneDrive - Colegio San Jose/2do Curso Infor/Software Camilo/HTML/Software Recup - Santino Gianninoto/contacto.html",
+		"/C/Users/Tino/OneDrive - Colegio San Jose/2do Curso Infor/Software Camilo/HTML/Software Recup - Santino Gianninoto/CSS/menu.css",
+		"/C/Users/Tino/OneDrive - Colegio San Jose/2do Curso Infor/Software Camilo/HTML/Software Recup - Santino Gianninoto/CSS/estilo.css",
+		"/C/Users/Tino/OneDrive - Colegio San Jose/2do Curso Infor/Software Camilo/HTML/Software Recup - Santino Gianninoto/index.html",
+		"/C/Users/Tino/OneDrive - Colegio San Jose/2do Curso Infor/Software Camilo/HTML/Ficha 14/Pagina Web/contacto.html",
+		"/C/Users/Tino/OneDrive - Colegio San Jose/2do Curso Infor/Algorítmia/Python/octubre/ejercicio recuperacion - santino gianninoto.py",
+		"/C/Users/Tino/OneDrive - Colegio San Jose/2do Curso Infor/Algorítmia/Python/octubre/matrices y vectores combinados 3/ejercicio 2 - santino gianninoto.py",
+		"/C/Users/Tino/Documents/PowerShell/Microsoft.PowerShell_profile.ps1",
+		"/C/Users/Tino/OneDrive - Colegio San Jose/2do Curso Infor/Algorítmia/vectores/vectores 4/ejercicio 2 vectores 4 - Santino Gianninoto.py",
+		"/C/Users/Tino/OneDrive - Colegio San Jose/2do Curso Infor/Algorítmia/vectores/vectores 4/ejercicio 3 vectores 4 - Santino Gianninoto.py",
+		"/C/Users/Tino/OneDrive - Colegio San Jose/2do Curso Infor/Algorítmia/Python/octubre/prueba.py",
+		"/C/Users/Tino/OneDrive - Colegio San Jose/2do Curso Infor/Software Camilo/HTML/Ficha 14/Pagina Web/contenido2.html",
+		"/C/Users/Tino/OneDrive - Colegio San Jose/2do Curso Infor/Software Camilo/HTML/Ficha 14/Pagina Web/contenido1.html",
+		"/C/Users/Tino/OneDrive - Colegio San Jose/2do Curso Infor/Software Camilo/HTML/Ficha 14/Pagina Web/index.html",
+		"/C/Users/Tino/AppData/Roaming/Sublime Text/Packages/User/Default (Windows).sublime-keymap",
+		"/C/Users/Tino/AppData/Roaming/Sublime Text/Packages/Default/Default (Windows).sublime-keymap"
+	],
+	"find":
+	{
+		"height": 49.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"scrollbar_highlights": true,
+		"show_context": true,
+		"use_buffer2": true,
+		"use_gitignore": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "sistema-de-votacion-automatizado.sublime-project",
+					"selected": true,
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 45,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								41,
+								41
+							]
+						],
+						"settings":
+						{
+							"show_definitions": true,
+							"syntax": "Packages/JSON/JSON.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"stack_multiselect": false,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 37.0
+	},
+	"input":
+	{
+		"height": 49.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.Terminus Build Results":
+	{
+		"height": 163.0
+	},
+	"output.autopep8":
+	{
+		"height": 180.0
+	},
+	"output.exec":
+	{
+		"height": 328.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.mdpopups":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "sistema-de-votacion-automatizado.sublime-project",
+	"replace":
+	{
+		"height": 70.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 282.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

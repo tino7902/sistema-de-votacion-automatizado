@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
-from config import *
 from operator import add
+
 
 def votacion(candidatos):
     Votacion = tk.Tk()
@@ -9,53 +9,54 @@ def votacion(candidatos):
     Votacion.title("Sistema de Votación Automatizado - Votación")
 
     for i in range(len(candidatos)):
-        candidatos[i].crear_frame_candidato(Votacion, i+1).grid(column=i, row=0, padx=5, pady=5)
-    
+        candidatos[i].crear_frame_candidato(Votacion, i + 1).grid(column=i, row=0, padx=5, pady=5)
+
     def voto_blanco():
         with open("resultados_parciales.txt", mode="r") as f:
             f.seek(0)
-            contenido = f.readlines()               #leer el archivo
+            contenido = f.readlines()  # leer el archivo
         with open("resultados_parciales.txt", mode="w") as f:
-            contenido[0] = "0\n"                    #modificar la primera linea con el id del candidato elegido
+            # modificar la primera linea con el id del candidato elegido
+            contenido[0] = "0\n"
             print(contenido)
-            f.writelines(contenido)                 #guardar los cambios
-    ttk.Button(Votacion, text="VOTAR \nEN \nBLANCO", command=voto_blanco).grid(column=len(candidatos)+1, row=0, padx=5, pady=5)
+            f.writelines(contenido)  # guardar los cambios
+    ttk.Button(Votacion, text="VOTAR \nEN \nBLANCO", command=voto_blanco).grid(column=len(candidatos) + 1, row=0, padx=5, pady=5)
 
     def confirmar_voto():
-        #guardar el contenido del txt en una list contenido
+        # guardar el contenido del txt en una list contenido
         with open("resultados_parciales.txt", mode="r") as f:
             contenido = f.readlines()
 
-        #list voto_nuevo, cada elemento es 0 menos el del voto elegido
-        voto_nuevo = [0] * (len(candidatos)+1)
+        # list voto_nuevo, cada elemento es 0 menos el del voto elegido
+        voto_nuevo = [0] * (len(candidatos) + 1)
         elegido = contenido[0]
-        voto_nuevo[int(elegido)] =+ 1
+        voto_nuevo[int(elegido)] = + 1
 
         # si es el primer voto, cada elemento de list votos_antes es 0
         if contenido[1] == "primera vez":
-            votos_antes = [0] * (len(candidatos)+1)
+            votos_antes = [0] * (len(candidatos) + 1)
 
-        #sino se lee desde el txt
+        # sino se lee desde el txt
         else:
-            #se lee los votos de antes
+            # se lee los votos de antes
             votos_antes = contenido[1]
-            #se eliminan los carácteres extra
+            # se eliminan los carácteres extra
             votos_antes = votos_antes.replace("]", "")
             votos_antes = votos_antes.replace("[", "")
             votos_antes = votos_antes.replace(",", "")
             votos_antes = votos_antes.replace("\n", "")
-            #se convierte a una lista
+            # se convierte a una lista
             votos_antes = votos_antes.split(" ")
-            #se convierten los elementos de la lista al tipo int
+            # se convierten los elementos de la lista al tipo int
             votos_antes = list(map(int, votos_antes))
 
-        #se suman los votos viejos más el nuevo
+        # se suman los votos viejos más el nuevo
         print(voto_nuevo)
         print(votos_antes)
         votos_ahora = list(map(add, votos_antes, voto_nuevo))
         print(votos_ahora)
 
-        #se actualiza el txt
+        # se actualiza el txt
         contenido[1] = f"{str(votos_ahora)}\n"
         print(contenido)
         with open("resultados_parciales.txt", mode="w") as f:
@@ -63,6 +64,7 @@ def votacion(candidatos):
 
         Votacion.destroy()
 
-    ttk.Button(Votacion, text="CONFIRMAR VOTO", command=confirmar_voto).grid(column=0, row=1, padx=5, pady=5)
+    ttk.Button(Votacion, text="CONFIRMAR VOTO", command=confirmar_voto).grid(
+        column=0, row=1, padx=5, pady=5)
 
     Votacion.mainloop()
