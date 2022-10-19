@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 from main import bloqueo, generador_contra
+from resultados import resultados
 # Para poder generar un boton en votación con sus datos
 
 
@@ -88,7 +89,7 @@ class Candidato:
         return frame
 
 
-def config():
+def config(candidatos):
     print("inicio ejecucion Config()")
 
     Config = tk.Tk()
@@ -137,8 +138,6 @@ def config():
         column=1, row=3, padx=5, pady=5, sticky=tk.EW)
 
     # Boton Agregar Candidatos
-    candidatos = []
-
     def agregar_candidato():
         candidatos.append(
             Candidato(nom_can.get(), cargo_can.get(), lista_can.get()))
@@ -149,24 +148,23 @@ def config():
         cargo_can.set("")
         lista_can.set("")
     ttk.Button(Config, text="agregar candidato", command=agregar_candidato).grid(
-        column=1, row=5, padx=5, pady=5)
+        column=1, row=4, padx=5, pady=5)
 
     # Boton Cantidad Votantes
     global contras
-
     def cantidad_votantes():
         global contras
         global cant_vot
         cant_vot = int(Padron.get())
+        Padron.set("")
         print(cant_vot)
         contras = [""] * cant_vot
         print(contras)
         for i in range(cant_vot):
             contras[i] = generador_contra()
         print(contras)
-
     ttk.Button(Config, text="establecer cantidad de votantes", command=cantidad_votantes,).grid(
-        column=0, columnspan=2, row=4, padx=5, pady=5)
+        column=0, row=4, padx=5, pady=5)
 
     # Boton Iniciar Votacion
 
@@ -175,7 +173,11 @@ def config():
         print(contras)
         Config.destroy()
         bloqueo(contras, candidatos)
-    ttk.Button(Config, text="iniciar votación", command=bot_vot).grid(
-        column=0, row=5, padx=5, pady=5)
+    ttk.Button(Config, text="iniciar votación", command=bot_vot).grid(column=0, row=5, padx=5, pady=5)
+
+    def bot_resultados():
+        Config.destroy()
+        resultados(candidatos, cant_vot)
+    ttk.Button(Config, text="ver resultados", command=bot_resultados).grid(column=1, row=5, padx=5, pady=5)
 
     Config.mainloop()

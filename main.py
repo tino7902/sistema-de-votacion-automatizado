@@ -1,5 +1,6 @@
-from config import *
+import config
 from votacion import *
+from resultados import *
 import tkinter as tk
 from tkinter import ttk
 import string
@@ -12,10 +13,10 @@ def main():
     contras = []  # lista de contraseñas generadas
 
     # formatear el txt
-    with open("resultados_parciales.txt", mode="r+") as f:
+    with open("resultados_parciales.txt", mode="w") as f:
         f.write("elegido: \nprimera vez")
-        f.seek(0)
-
+    with open("candidatos.txt", mode="w") as f:
+        f.write("primera vez")
     # iniciar la ventana de bloqueo
     bloqueo(contras, candidatos)
 
@@ -42,7 +43,6 @@ def bloqueo(contras, candidatos):
             contras (list): lista de las contraseñas
             condidatos (list): lista de los candidatos
     '''
-    contra_votantes = ["contraseña", "contraseña2"]
 
     Bloqueo = tk.Tk()
     window_width = 600
@@ -74,15 +74,18 @@ def bloqueo(contras, candidatos):
         '''Chequea la contraseña ingresada y abre la ventana correspondiente.'''
         contra_ingresada = contra.get()
         contra.set("")
+        #ADMIN
         if contra_ingresada == "admin":
             Bloqueo.destroy()
             print("contraseña config")
-            config()
-
+            config.config(candidatos)
+        #RESULTADOS
         elif contra_ingresada == "resultados":
             print("contraseña resultados")
+            resultados()
+        #VOTANTES
         else:
-            for i in range(len(contra_votantes)):
+            for i in range(len(contras)):
                 if contra_ingresada == contras[i]:
                     print("contraseña correcta")
                     contras.remove(contra_ingresada)
