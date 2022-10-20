@@ -1,0 +1,4 @@
+__pycache__/
+*.xlsx
+*.sublime-project
+*.sublime-workspace
