@@ -59,18 +59,18 @@ def resultados(candidatos, cant_padron):
     ttk.Label(Resultados, text=f"Cantidad de inscritos en el padron que no votaron: {no_votaron}").grid(row=(len(candidatos) + 2), column=0, columnspan=2, padx=5, pady=5, sticky=tk.W)
     ttk.Label(Resultados, text=f"Cantidad de inscritos en el padron que sí votaron: {total_votos}").grid(row=(len(candidatos) + 3), column=0, columnspan=2, padx=5, pady=5, sticky=tk.W)
     porcentaje = (total_votos * 100) / cant_padron
-    ttk.Label(Resultados, text=f"Porcentaje de inscritos en el padron que sí votaron: {no_votaron}%").grid(row=(len(candidatos) + 4), column=0, columnspan=2, padx=5, pady=5, sticky=tk.W)
+    ttk.Label(Resultados, text=f"Porcentaje de inscritos en el padron que sí votaron: {porcentaje}%").grid(row=(len(candidatos) + 4), column=0, columnspan=2, padx=5, pady=5, sticky=tk.W)
     porcentaje = (no_votaron * 100) / cant_padron
-    ttk.Label(Resultados, text=f"Porcentaje de inscritos en el padron que no votaron: {no_votaron}%").grid(row=(len(candidatos) + 5), column=0, columnspan=2, padx=5, pady=5, sticky=tk.W)
+    ttk.Label(Resultados, text=f"Porcentaje de inscritos en el padron que no votaron: {porcentaje}%").grid(row=(len(candidatos) + 5), column=0, columnspan=2, padx=5, pady=5, sticky=tk.W)
 
     def btn_guardar_excel():
-        guardar_excel(candidatos, votos, total_votos).save("resultado.xlsx")
+        guardar_excel(candidatos, votos, total_votos, cant_padron, no_votaron).save("resultado.xlsx")
 
     ttk.Button(Resultados, text="Guardar resultados en archivo excel", command=btn_guardar_excel).grid(column=0, row=len(candidatos) + 6, columnspan=2, padx=5, pady=5)
     Resultados.mainloop()
 
 
-def guardar_excel(candidatos, votos, total_votos):
+def guardar_excel(candidatos, votos, total_votos, cant_padron, no_votaron):
     wb = openpyxl.Workbook()
     hoja = wb.active
     datos = []
@@ -82,7 +82,17 @@ def guardar_excel(candidatos, votos, total_votos):
     porcentaje = (votos[0] * 100) / total_votos
     dato = ("voto en blanco", "voto en blanco", "voto en blanco", votos[0], porcentaje)
     datos.append(dato)
-    dato = ("Total de votos", " ", " ", total_votos, "100%")
+
+    dato = ("", " ", " ", "", "")
+    datos.append(dato)
+    porcentaje = (total_votos * 100) / cant_padron
+    dato = ("Inscritos en el Padron que sí votaron", " ", " ", total_votos, porcentaje)
+    datos.append(dato)
+    porcentaje = (no_votaron * 100) / cant_padron
+    dato = ("Inscritos en el Padron que no votaron", " ", " ", no_votaron, )
+    datos.append(dato)
+    porcentaje = (cant_padron * 100) / cant_padron
+    dato = ("Inscritos en el Padron", " ", " ", cant_padron, porcentaje)
     datos.append(dato)
 
     hoja.append(("Nombre", "Cargo", "Lista", "Cantidad de Votos", "Porcentaje de Votos"))
