@@ -50,15 +50,19 @@ def bloqueo(contras, candidatos):
     # se hace que la ventana sea pantalla completa
     Bloqueo.attributes('-fullscreen', True)
 
+    Bloqueo.grid_rowconfigure(0, weight=1)
+    Bloqueo.grid_rowconfigure(2, weight=1)
+    Bloqueo.grid_columnconfigure(0, weight=1)
+    Bloqueo.grid_columnconfigure(2, weight=1)
+
     Bloqueo.title("Sistema de Votación Automatizado")
 
-    # ttk.Label(Bloqueo, text="Ingresar Contraseña Personal:").grid(column=0, row=0, padx=5, pady=5, sticky=tk.E)
-
-    ing_contra_img = ImageTk.PhotoImage(file="./IMG/img_ingresar_contra.jpeg")
+    ttk.Label(text="", borderwidth=0).grid(column=0, row=0)
 
     contra = tk.StringVar()
+    ing_contra_img = ImageTk.PhotoImage(file="./IMG/img_ingresar_contra.jpeg")
     ttk.Label(borderwidth=0, image=ing_contra_img, text="").grid(column=1, row=0, padx=5, pady=5)
-    ttk.Entry(Bloqueo, textvariable=contra, show="*").grid(column=1, row=0, padx=5, pady=5)
+    ttk.Entry(Bloqueo, textvariable=contra, show="*",).grid(column=1, row=0, padx=5, pady=5)
 
     def chequear_contra():
         '''Chequea la contraseña ingresada y abre la ventana correspondiente.'''
@@ -78,7 +82,11 @@ def bloqueo(contras, candidatos):
                     votacion(candidatos)
                 else:
                     print("contraseña equivocada")
-    ttk.Button(Bloqueo, text="aceptar", command=chequear_contra).grid(column=1, row=1, padx=5, pady=5, sticky=tk.E)
+
+    img = Image.open("./IMG/img_btn_confirmar.jpeg")
+    image = img.resize((300, 100))
+    img_confirmar = ImageTk.PhotoImage(image)
+    ttk.Button(Bloqueo, text="", command=chequear_contra, image=img_confirmar).grid(column=1, row=1, padx=5, pady=5, sticky=tk.N)
 
     Bloqueo.mainloop()
 
