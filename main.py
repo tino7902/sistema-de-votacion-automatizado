@@ -3,6 +3,7 @@ from votacion import *
 from resultados import *
 import tkinter as tk
 from tkinter import ttk
+from PIL import Image, ImageTk
 import string
 import random
 
@@ -64,11 +65,13 @@ def bloqueo(contras, candidatos):
 
     Bloqueo.title("Sistema de Votación Automatizado")
 
-    ttk.Label(Bloqueo, text="Ingresar Contraseña Personal:").grid(
-        column=0, row=0, padx=5, pady=5, sticky=tk.E)
+    # ttk.Label(Bloqueo, text="Ingresar Contraseña Personal:").grid(column=0, row=0, padx=5, pady=5, sticky=tk.E)
+
+    ing_contra_img = ImageTk.PhotoImage(file="./IMG/img_ingresar_contra.jpeg")
 
     contra = tk.StringVar()
-    ttk.Entry(Bloqueo, textvariable=contra, show="*").grid(column=1, row=0, padx=5, pady=5, sticky=tk.EW)
+    ttk.Label(borderwidth=0, image=ing_contra_img, text="").grid(column=1, row=0, padx=5, pady=5)
+    ttk.Entry(Bloqueo, textvariable=contra, show="*").grid(column=1, row=0, padx=5, pady=5)
 
     def chequear_contra():
         '''Chequea la contraseña ingresada y abre la ventana correspondiente.'''
