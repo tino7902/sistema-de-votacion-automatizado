@@ -1,11 +1,9 @@
-import config
+from config import config
 from votacion import *
 from resultados import *
 import tkinter as tk
 from tkinter import ttk
 from PIL import Image, ImageTk
-import string
-import random
 
 
 def main():
@@ -20,20 +18,6 @@ def main():
         f.write("primera vez")
     # iniciar la ventana de bloqueo
     bloqueo(contras, candidatos)
-
-
-def generador_contra():
-    '''
-    Devuelve una contraseña aleatoria de 8 letras.
-
-        Returns:
-            contra_generada (str): contraseña generada. 8 letras aleatorias
-    '''
-    # se guardan todas las letras del alfabeto
-    letras = string.ascii_lowercase
-    # se eligen 8 letras al azar y se devuelve como contraseña
-    contra_generada = ''.join(random.choice(letras) for i in range(8))
-    return contra_generada
 
 
 def bloqueo(contras, candidatos):
@@ -71,7 +55,8 @@ def bloqueo(contras, candidatos):
         # ADMIN
         if contra_ingresada == "admin":
             print("contraseña config")
-            config.config(candidatos)
+            Bloqueo.destroy()
+            config(candidatos)
         # VOTANTES
         else:
             for i in range(len(contras)):

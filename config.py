@@ -1,7 +1,9 @@
 import tkinter as tk
 from tkinter import ttk
-from main import bloqueo, generador_contra
+# from main import bloqueo
 from resultados import resultados
+import string
+import random
 # Para poder generar un boton en votación con sus datos
 
 
@@ -88,6 +90,20 @@ class Candidato:
         return frame
 
 
+def generador_contra():
+    '''
+    Devuelve una contraseña aleatoria de 8 letras.
+
+        Returns:
+            contra_generada (str): contraseña generada. 8 letras aleatorias
+    '''
+    # se guardan todas las letras del alfabeto
+    letras = string.ascii_lowercase
+    # se eligen 8 letras al azar y se devuelve como contraseña
+    contra_generada = ''.join(random.choice(letras) for i in range(8))
+    return contra_generada
+
+
 def config(candidatos):
     print("inicio ejecucion Config()")
 
@@ -115,31 +131,23 @@ def config(candidatos):
     ttk.Label(Config, text="Ingresar cantidad de votantes:").grid(
         column=0, row=0, padx=5, pady=5, sticky=tk.E)
 
-    ttk.Label(Config, text="Ingresar nombre y apellido del candidato:").grid(
-        column=0, row=1, padx=5, pady=5, sticky=tk.E)
-    ttk.Label(Config, text="Ingresar cargo al que se candidata:").grid(
-        column=0, row=2, padx=5, pady=5, sticky=tk.E)
-    ttk.Label(Config, text="Ingresar lista del candidato:").grid(
-        column=0, row=3, padx=5, pady=5, sticky=tk.E)
+    ttk.Label(Config, text="Ingresar nombre y apellido del candidato:").grid(column=0, row=1, padx=5, pady=5, sticky=tk.E)
+    ttk.Label(Config, text="Ingresar cargo al que se candidata:").grid(column=0, row=2, padx=5, pady=5, sticky=tk.E)
+    ttk.Label(Config, text="Ingresar lista del candidato:").grid(column=0, row=3, padx=5, pady=5, sticky=tk.E)
 
-    Padron = tk.StringVar()
-    ttk.Entry(Config, textvariable=Padron).grid(
-        column=1, row=0, padx=5, pady=5, sticky=tk.EW)
+    Padron = tk.StringVar(Config)
+    ttk.Entry(Config, textvariable=Padron).grid(column=1, row=0, padx=5, pady=5, sticky=tk.EW)
 
-    nom_can = tk.StringVar()
-    ttk.Entry(Config, textvariable=nom_can).grid(
-        column=1, row=1, padx=5, pady=5, sticky=tk.EW)
-    cargo_can = tk.StringVar()
-    ttk.Entry(Config, textvariable=cargo_can).grid(
-        column=1, row=2, padx=5, pady=5, sticky=tk.EW)
-    lista_can = tk.StringVar()
-    ttk.Entry(Config, textvariable=lista_can).grid(
-        column=1, row=3, padx=5, pady=5, sticky=tk.EW)
+    nom_can = tk.StringVar(Config)
+    ttk.Entry(Config, textvariable=nom_can).grid(column=1, row=1, padx=5, pady=5, sticky=tk.EW)
+    cargo_can = tk.StringVar(Config)
+    ttk.Entry(Config, textvariable=cargo_can).grid(column=1, row=2, padx=5, pady=5, sticky=tk.EW)
+    lista_can = tk.StringVar(Config)
+    ttk.Entry(Config, textvariable=lista_can).grid(column=1, row=3, padx=5, pady=5, sticky=tk.EW)
 
     # Boton Agregar Candidatos
     def agregar_candidato():
-        candidatos.append(
-            Candidato(nom_can.get(), cargo_can.get(), lista_can.get()))
+        candidatos.append(Candidato(nom_can.get(), cargo_can.get(), lista_can.get()))
         for candidato in candidatos:
             print(candidato)
         print("fin de lista de candidatos\n")
@@ -168,6 +176,7 @@ def config(candidatos):
 
     # Boton Iniciar Votacion
     def bot_vot():
+        from main import bloqueo
         global contras
         print(contras)
         Config.destroy()
