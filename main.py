@@ -16,8 +16,6 @@ def main():
     # formatear el txt
     with open("resultados_parciales.txt", mode="w") as f:
         f.write("elegido: \nprimera vez")
-    with open("candidatos.txt", mode="w") as f:
-        f.write("primera vez")
     # iniciar la ventana de bloqueo
     bloqueo(contras, candidatos)
 
