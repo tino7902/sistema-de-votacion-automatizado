@@ -76,7 +76,6 @@ class Candidato:
 
         def votar_por():
             with open("resultados_parciales.txt", mode="r") as f:
-                f.seek(0)
                 contenido = f.readlines()  # leer el archivo
             with open("resultados_parciales.txt", mode="w") as f:
                 # modificar la primera linea con el id del candidato elegido
@@ -168,7 +167,6 @@ def config(candidatos):
         column=0, row=4, padx=5, pady=5)
 
     # Boton Iniciar Votacion
-
     def bot_vot():
         global contras
         print(contras)

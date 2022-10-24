@@ -46,22 +46,9 @@ def bloqueo(contras, candidatos):
     '''
 
     Bloqueo = tk.Tk()
-    window_width = 600
-    window_height = 600
 
-    # Centrar Ventana
-    # conseguir dimensiones de la pantalla
-    screen_width = Bloqueo.winfo_screenwidth()
-    screen_height = Bloqueo.winfo_screenheight()
-    # hallar el centro
-    center_x = int(screen_width / 2 - window_width / 2)
-    center_y = int(screen_height / 2 - window_height / 2)
-    # poner posicion de ventana en el centro de la pantalla
-    Bloqueo.geometry(f'{window_width}x{window_height}+{center_x}+{center_y}')
-
-    # Configuracion de la grid
-    Bloqueo.columnconfigure(0, weight=1)
-    Bloqueo.columnconfigure(1, weight=3)
+    # se hace que la ventana sea pantalla completa
+    Bloqueo.attributes('-fullscreen', True)
 
     Bloqueo.title("Sistema de Votación Automatizado")
 
@@ -79,13 +66,8 @@ def bloqueo(contras, candidatos):
         contra.set("")
         # ADMIN
         if contra_ingresada == "admin":
-            Bloqueo.destroy()
             print("contraseña config")
             config.config(candidatos)
-        # RESULTADOS
-        elif contra_ingresada == "resultados":
-            print("contraseña resultados")
-            resultados()
         # VOTANTES
         else:
             for i in range(len(contras)):
@@ -96,8 +78,7 @@ def bloqueo(contras, candidatos):
                     votacion(candidatos)
                 else:
                     print("contraseña equivocada")
-    ttk.Button(Bloqueo, text="aceptar", command=chequear_contra).grid(
-        column=1, row=1, padx=5, pady=5, sticky=tk.E)
+    ttk.Button(Bloqueo, text="aceptar", command=chequear_contra).grid(column=1, row=1, padx=5, pady=5, sticky=tk.E)
 
     Bloqueo.mainloop()
 
