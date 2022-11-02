@@ -4,9 +4,10 @@ from tkinter import ttk
 from resultados import resultados
 import string
 import random
+from PIL import Image, ImageTk
+
+
 # Para poder generar un boton en votación con sus datos
-
-
 class Candidato:
     """
     Una class que guarda Atributos de los candidatos
@@ -69,6 +70,11 @@ class Candidato:
         frame.rowconfigure(0, weight=1)
         frame.rowconfigure(1, weight=1)
         frame.rowconfigure(2, weight=1)
+
+        global lista_bg
+        bg_lista = Image.open("./IMG/img_lista.jpeg")
+        lista_bg = ImageTk.PhotoImage(image=bg_lista)
+        ttk.Label(frame, borderwidth=0, image=lista_bg, text="").grid(column=0, row=0, columnspan=2, rowspan=3)
 
         ttk.Label(frame, text=f"Nombre del candidato: {self.nom}").grid(column=0, row=0, padx=5, pady=5)
 
