@@ -44,9 +44,11 @@ class Candidato:
         self.nom = nom
         self.cargo = cargo
         self.lista = lista
+        self.bg_lista = Image.open("./IMG/img_lista.jpeg")
+        self.lista_bg = ImageTk.PhotoImage(image=self.bg_lista)
 
     def __str__(self):
-        return f"nombre del candidato: {self.nom}\ncargo del candidato: {self.cargo}\nlista del candidato: {self.lista}"
+        return f"nombre del candidato: {self.nom}\ncargo del candidato: {self.cargo}\nlista del candidato: {self.lista} -- IMAGE: {self.bg_lista} PHOTOIMAGE: {self.lista_bg}"
 
     def crear_frame_candidato(self, contenedor, id_candidato):
         """
@@ -71,10 +73,7 @@ class Candidato:
         frame.rowconfigure(1, weight=1)
         frame.rowconfigure(2, weight=1)
 
-        global lista_bg
-        bg_lista = Image.open("./IMG/img_lista.jpeg")
-        lista_bg = ImageTk.PhotoImage(image=bg_lista)
-        ttk.Label(frame, borderwidth=0, image=lista_bg, text="").grid(column=0, row=0, columnspan=2, rowspan=3)
+        ttk.Label(frame, borderwidth=0, image=self.lista_bg, text="").grid(column=0, row=0, columnspan=2, rowspan=3)
 
         ttk.Label(frame, text=f"Nombre del candidato: {self.nom}").grid(column=0, row=0, padx=5, pady=5)
 
