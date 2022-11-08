@@ -43,6 +43,7 @@ def bloqueo(contras, candidatos):
 
     contra = tk.StringVar()
     ing_contra_img = ImageTk.PhotoImage(file="./IMG/img_ingresar_contra.jpeg")
+    print(ing_contra_img)
     ttk.Label(Bloqueo, borderwidth=0, image=ing_contra_img, text="").grid(column=1, row=0, padx=5, pady=5)
     ttk.Entry(Bloqueo, textvariable=contra, show="*",).grid(column=1, row=0, padx=5, pady=5)
 

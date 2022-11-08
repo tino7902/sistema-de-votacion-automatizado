@@ -1,10 +1,11 @@
 import tkinter as tk
 from tkinter import ttk
-# from main import bloqueo
+from tkinter import filedialog
 from resultados import resultados
 import string
 import random
 from PIL import Image, ImageTk
+import math
 
 
 # Para poder generar un boton en votación con sus datos
@@ -27,7 +28,7 @@ class Candidato:
         crea un frame de tkinter para el candidato
     """
 
-    def __init__(self, nom, cargo, lista):
+    def __init__(self, nom, cargo, lista, id_candidato, foto):
         """
         Construye los atributos necesarios para el objeto Candidato.
 
@@ -44,42 +45,27 @@ class Candidato:
         self.nom = nom
         self.cargo = cargo
         self.lista = lista
-        self.bg_lista = Image.open("./IMG/img_lista.jpeg")
-        self.lista_bg = ImageTk.PhotoImage(image=self.bg_lista)
+        self.id_candidato = id_candidato
+        self.foto = foto
 
     def __str__(self):
-        return f"nombre del candidato: {self.nom}\ncargo del candidato: {self.cargo}\nlista del candidato: {self.lista} -- IMAGE: {self.bg_lista} PHOTOIMAGE: {self.lista_bg}"
+        return f"nombre del candidato: {self.nom}\ncargo del candidato: {self.cargo}\nlista del candidato: {self.lista}\nfoto del candidatos: {self.foto}"
 
-    def crear_frame_candidato(self, contenedor, id_candidato):
+    def crear_boton_voto(self, contenedor, id_candidato):
         """
         Crea un frame de tkinter para el candidato
 
         Parametros
         ----------
             contenedor : ojeto tk
-                el contenedor o ventana de tkinter en la que va el frame
+                el contenedor de tkinter en la que va el boton
             id_candidato : int
-                id del candidato al que el frame corresponde
+                id del candidato al que el boton corresponde
 
         Retorna
         -------
-            frame (ttk.Frame): objeto de tipo frame de tkinter con los datos del candidato
+            boton (ttk.Button): objeto de tipo boton
         """
-
-        frame = ttk.Frame(contenedor)
-
-        # configuracion de la grid
-        frame.rowconfigure(0, weight=1)
-        frame.rowconfigure(1, weight=1)
-        frame.rowconfigure(2, weight=1)
-
-        ttk.Label(frame, borderwidth=0, image=self.lista_bg, text="").grid(column=0, row=0, columnspan=2, rowspan=3)
-
-        ttk.Label(frame, text=f"Nombre del candidato: {self.nom}").grid(column=0, row=0, padx=5, pady=5)
-
-        ttk.Label(frame, text=f"Cargo al que se postula: {self.cargo}").grid(column=0, row=1, padx=5, pady=5)
-
-        ttk.Label(frame, text=f"Lista: {self.lista}").grid(column=0, row=2, padx=5, pady=5)
 
         def votar_por():
             with open("resultados_parciales.txt", mode="r") as f:
@@ -89,10 +75,16 @@ class Candidato:
                 contenido[0] = str(f"{id_candidato}\n")
                 print(contenido)
                 f.writelines(contenido)  # guardar los cambios
+        btn_votar = ttk.Button(contenedor, text=f"Votar por: {self.nom}", command=votar_por)
+        return btn_votar
 
-        ttk.Button(frame, text=f"Votar por: {self.nom}", command=votar_por).grid(column=0, row=3, padx=5, pady=5)
+    def crear_img_candidato(self, canvas_width, canvas_height, contenedor):
+        img = Image.open(self.foto)
+        image = img.resize((math.floor(canvas_width * 0.8), math.floor(canvas_height * 0.5)))
+        img_candidato = ImageTk.PhotoImage(image)
 
-        return frame
+        lbl_img_can = ttk.Label(contenedor, borderwidth=0, image=img_candidato, text="")
+        return lbl_img_can
 
 
 def generador_contra():
@@ -150,17 +142,37 @@ def config(candidatos):
     lista_can = tk.StringVar(Config)
     ttk.Entry(Config, textvariable=lista_can).grid(column=1, row=3, padx=5, pady=5, sticky=tk.EW)
 
+    foto_can = tk.StringVar(Config)
+    ttk.Entry(Config, textvariable=foto_can).grid(column=1, row=4, padx=5, pady=5, sticky=tk.EW)
+
+    # SELECIONAR FOTO DEL CANDIDATO
+    def seleccionar_foto():
+        global dir_datos
+        foto = filedialog.askopenfilename(
+            initialdir="/",
+            title="seleccionar foto del candidato"
+        )
+        foto_can.set(foto)
+        print(type(foto))
+
+    btn_foto_can = ttk.Button(Config, text="Seleccionar Foto de Candidato: ", command=seleccionar_foto)
+    btn_foto_can.grid(column=0, row=4, padx=5, pady=5, sticky=tk.E)
+
     # Boton Agregar Candidatos
     def agregar_candidato():
-        candidatos.append(Candidato(nom_can.get(), cargo_can.get(), lista_can.get()))
+        candidato = ""
+        candidatos.append(candidato)
+        candidato = Candidato(nom_can.get(), cargo_can.get(), lista_can.get(), len(candidatos) + 1, foto_can.get())
+        candidatos[-1] = candidato
         for candidato in candidatos:
             print(candidato)
         print("fin de lista de candidatos\n")
         nom_can.set("")
         cargo_can.set("")
         lista_can.set("")
+        foto_can.set("")
     ttk.Button(Config, text="agregar candidato", command=agregar_candidato).grid(
-        column=1, row=4, padx=5, pady=5)
+        column=1, row=5, padx=5, pady=5)
 
     # Boton Cantidad Votantes
     global contras
@@ -177,7 +189,7 @@ def config(candidatos):
             contras[i] = generador_contra()
         print(contras)
     ttk.Button(Config, text="establecer cantidad de votantes", command=cantidad_votantes,).grid(
-        column=0, row=4, padx=5, pady=5)
+        column=0, row=5, padx=5, pady=5)
 
     # Boton Iniciar Votacion
     def bot_vot():
@@ -186,11 +198,11 @@ def config(candidatos):
         print(contras)
         Config.destroy()
         bloqueo(contras, candidatos)
-    ttk.Button(Config, text="iniciar votación", command=bot_vot).grid(column=0, row=5, padx=5, pady=5)
+    ttk.Button(Config, text="iniciar votación", command=bot_vot).grid(column=0, row=6, padx=5, pady=5)
 
     def bot_resultados():
         Config.destroy()
         resultados(candidatos, cant_vot)
-    ttk.Button(Config, text="ver resultados", command=bot_resultados).grid(column=1, row=5, padx=5, pady=5)
+    ttk.Button(Config, text="ver resultados", command=bot_resultados).grid(column=1, row=6, padx=5, pady=5)
 
     Config.mainloop()
