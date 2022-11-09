@@ -1,11 +1,10 @@
 import tkinter as tk
 from tkinter import ttk
 from tkinter import filedialog
+from PIL import Image, ImageTk
 from resultados import resultados
 import string
 import random
-from PIL import Image, ImageTk
-import math
 
 
 # Para poder generar un boton en votación con sus datos
@@ -51,7 +50,7 @@ class Candidato:
     def __str__(self):
         return f"nombre del candidato: {self.nom}\ncargo del candidato: {self.cargo}\nlista del candidato: {self.lista}\nfoto del candidatos: {self.foto}"
 
-    def crear_boton_voto(self, contenedor, id_candidato):
+    def crear_boton_voto(self, contenedor, id_candidato, image_votar):
         """
         Crea un frame de tkinter para el candidato
 
@@ -75,16 +74,14 @@ class Candidato:
                 contenido[0] = str(f"{id_candidato}\n")
                 print(contenido)
                 f.writelines(contenido)  # guardar los cambios
-        btn_votar = ttk.Button(contenedor, text=f"Votar por: {self.nom}", command=votar_por)
+        # Configuración del botón para voto en blanco
+        btn_votar = ttk.Button(
+            contenedor,
+            text="",
+            command=votar_por,
+            image=image_votar
+        )
         return btn_votar
-
-    def crear_img_candidato(self, canvas_width, canvas_height, contenedor):
-        img = Image.open(self.foto)
-        image = img.resize((math.floor(canvas_width * 0.8), math.floor(canvas_height * 0.5)))
-        img_candidato = ImageTk.PhotoImage(image)
-
-        lbl_img_can = ttk.Label(contenedor, borderwidth=0, image=img_candidato, text="")
-        return lbl_img_can
 
 
 def generador_contra():

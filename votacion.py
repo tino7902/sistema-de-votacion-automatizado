@@ -6,22 +6,34 @@ from PIL import Image, ImageTk
 
 
 def votacion(candidatos):
-    Votacion = tk.Toplevel()
+    Votacion = tk.Toplevel()  # EL CAUSANTE DE MIS PESADILLAS
 
+    # Título de ventana + fullscreen
     Votacion.title("Sistema de Votación Automatizado - Votación")
     Votacion.attributes('-fullscreen', True)
 
-    cant_obj = len(candidatos) + 1
-    screen_width = Votacion.winfo_screenwidth()
-    canvas_width = math.floor(screen_width / cant_obj)
-    canvas_height = math.floor((15 * canvas_width) / 12)
-    imagenes = []
+    # DECLARACION DE VARIABLES PARA DESPUES
+    cant_obj = len(candidatos) + 1                          # Cantidad de opciones para votar
+    screen_width = Votacion.winfo_screenwidth()             # Ancho de la pantalla
+    canvas_width = math.floor(screen_width / cant_obj)      # Ancho para el canvas
+    canvas_height = math.floor((15 * canvas_width) / 12)    # Alto del canvas
+    imagenes = []                                           # Lista que contendrá todas las imagenes
+    images_votar = []                                       # lista con imagenes iguales para cada boton, no pregunten porque...
+
+    # Se guarda la foto de cada candidato en una lista para evitar que se sobreescriban
+    # Se tiene porque sino solo aparece la última imagen
     for i in range(len(candidatos)):
         img = Image.open(candidatos[i].foto)
         image = img.resize((math.floor(canvas_width * 0.8), math.floor(canvas_height * 0.5)))
         img_candidato = ImageTk.PhotoImage(image)
         imagenes.append(img_candidato)
 
+        img_votar = Image.open("./IMG/img_btn_votar.jpeg")  # tamaño de la img: 345x1280
+        image_votar = ImageTk.PhotoImage(img_votar)
+        images_votar.append(image_votar)
+
+    # Se crea un canvas para cada candidato
+    # Contiene su foto, nombre, cargo, lista y un botón para votarlo
     for i in range(len(candidatos)):
         # COLOR DE FONDO
         canvas = tk.Canvas(
@@ -64,25 +76,37 @@ def votacion(candidatos):
 
         # LISTA
         canvas.create_text(
-            (canvas_width / 2, canvas_height * 0.8),
+            (canvas_width / 2, canvas_height * 0.75),
             text=candidatos[i].lista,
             font=("Helvetica", 18),
             anchor=tk.N
         )
 
-        btn_votar = candidatos[i].crear_boton_voto(canvas, i + 1)
-        btn_votar.place(x=canvas_width / 2, y=canvas_height * 0.9, anchor="n")
+        # BOTÓN PARA VOTAR
 
+        btn_votar = candidatos[i].crear_boton_voto(canvas, i + 1, images_votar[i])
+        btn_votar.place(
+            x=canvas_width / 2,
+            y=canvas_height * 0.85,
+            anchor="n",
+        )
+
+    # Función para el voto en blanco
     def voto_blanco():
         with open("resultados_parciales.txt", mode="r") as f:
             contenido = f.readlines()  # leer el archivo
         with open("resultados_parciales.txt", mode="w") as f:
-            # modificar la primera linea con el id del candidato elegido
+            # modificar la primera linea con el id del candidato elegido (0 para voto en blanco)
             contenido[0] = "0\n"
             print(contenido)
             f.writelines(contenido)  # guardar los cambios
-    img_vb = Image.open("./IMG/img_voto_blanco.jpeg")
-    image_vb = img_vb.resize((canvas_width, canvas_height))
+
+    # Configuración del botón para voto en blanco
+    img_vb = Image.open("./IMG/img_voto_blanco.jpeg")  # tamaño de la img: 345x1280
+    # se calcula las nuevas dimensiones de la img
+    vb_height = math.floor(canvas_height)                   # la nueva altura sera la del canvas
+    vb_width = math.floor((345 * canvas_height) / 1280)     # regla de tres para hallar el ancho
+    image_vb = img_vb.resize((vb_width, vb_height))
     img_voto_blanco = ImageTk.PhotoImage(image_vb)
     btn_voto_blanco = ttk.Button(
         Votacion,
@@ -139,6 +163,7 @@ def votacion(candidatos):
 
         Votacion.destroy()
 
+    # Configuración del boton de confirmar voto
     img_cv = Image.open("./IMG/img_btn_enviar_voto.jpeg")
     img_conf_voto = ImageTk.PhotoImage(img_cv)
     btn_conf_voto = ttk.Button(
@@ -147,6 +172,12 @@ def votacion(candidatos):
         command=confirmar_voto,
         image=img_conf_voto
     )
-    btn_conf_voto.grid(column=0, row=1, padx=5, pady=5, columnspan=2)
+    btn_conf_voto.grid(
+        column=0,
+        row=1,
+        padx=5,
+        pady=5,
+        columnspan=2
+    )
 
     Votacion.mainloop()

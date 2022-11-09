@@ -32,27 +32,32 @@ def bloqueo(contras, candidatos):
     # se hace que la ventana sea pantalla completa
     Bloqueo.attributes('-fullscreen', True)
 
+    # configuracion de la grid
     Bloqueo.grid_rowconfigure(0, weight=1)
     Bloqueo.grid_rowconfigure(2, weight=1)
     Bloqueo.grid_columnconfigure(0, weight=1)
     Bloqueo.grid_columnconfigure(2, weight=1)
 
+    # titulo de la ventana
     Bloqueo.title("Sistema de Votación Automatizado")
 
+    # label con la imagen de fondo + entry donde se escribe la contraseña
     ttk.Label(text="", borderwidth=0).grid(column=0, row=0)
-
     contra = tk.StringVar()
     ing_contra_img = ImageTk.PhotoImage(file="./IMG/img_ingresar_contra.jpeg")
     print(ing_contra_img)
     ttk.Label(Bloqueo, borderwidth=0, image=ing_contra_img, text="").grid(column=1, row=0, padx=5, pady=5)
-    ttk.Entry(Bloqueo, textvariable=contra, show="*",).grid(column=1, row=0, padx=5, pady=5)
+    ttk.Entry(Bloqueo, textvariable=contra, show="*").grid(column=1, row=0, padx=5, pady=5)
 
     def chequear_contra():
         '''Chequea la contraseña ingresada y abre la ventana correspondiente.'''
+
+        # se guarda la contraseña en una variable para compararla
         contra_ingresada = contra.get()
         contra.set("")
         # ADMIN
-        if contra_ingresada == "admin":
+        contra_admin = "admin"  # CAMBIAR ESTA VARIABLE PARA CAMBIAR LA CONTRA DE ADMIN
+        if contra_ingresada == contra_admin:
             print("contraseña config")
             Bloqueo.destroy()
             config(candidatos)
@@ -67,9 +72,9 @@ def bloqueo(contras, candidatos):
                 else:
                     print("contraseña equivocada")
 
+    # Boton de confirmación + imagen
     img = Image.open("./IMG/img_btn_confirmar.jpeg")
-    image = img.resize((300, 100))
-    img_confirmar = ImageTk.PhotoImage(image)
+    img_confirmar = ImageTk.PhotoImage(img)
     ttk.Button(Bloqueo, text="", command=chequear_contra, image=img_confirmar).grid(column=1, row=1, padx=5, pady=5, sticky=tk.N)
 
     Bloqueo.mainloop()
