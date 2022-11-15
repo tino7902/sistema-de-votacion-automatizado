@@ -1,7 +1,6 @@
 import tkinter as tk
 from tkinter import ttk
 from tkinter import filedialog
-from PIL import Image, ImageTk
 from resultados import resultados
 import string
 import random
@@ -39,6 +38,7 @@ class Candidato:
                 cargo al que se candidata
             lista : str
                 lista a la que se candidata
+            id_candidato
         """
 
         self.nom = nom
@@ -168,8 +168,7 @@ def config(candidatos):
         cargo_can.set("")
         lista_can.set("")
         foto_can.set("")
-    ttk.Button(Config, text="agregar candidato", command=agregar_candidato).grid(
-        column=1, row=5, padx=5, pady=5)
+    ttk.Button(Config, text="agregar candidato", command=agregar_candidato).grid(column=1, row=5, padx=5, pady=5)
 
     # Boton Cantidad Votantes
     global contras
@@ -184,6 +183,11 @@ def config(candidatos):
         print(contras)
         for i in range(cant_vot):
             contras[i] = generador_contra()
+        lista_contras = [""] * len(contras)
+        for i in range(len(contras)):
+            lista_contras[i] = contras[i] + "\n"
+        with open("lista de contraseñas.txt", mode="w") as f:
+            f.writelines(lista_contras)
         print(contras)
     ttk.Button(Config, text="establecer cantidad de votantes", command=cantidad_votantes,).grid(
         column=0, row=5, padx=5, pady=5)

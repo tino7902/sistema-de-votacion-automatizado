@@ -22,7 +22,7 @@ def bloqueo(contras, candidatos):
     '''
     Pantalla inicial y la más usada. Bloquea la votacion hasta que se ingrese una de las contraseñas
 
-        Parameters:
+        Parametros:
             contras (list): lista de las contraseñas
             condidatos (list): lista de los candidatos
     '''

@@ -6,7 +6,7 @@ from PIL import Image, ImageTk
 
 
 def votacion(candidatos):
-    Votacion = tk.Toplevel()  # EL CAUSANTE DE MIS PESADILLAS
+    Votacion = tk.Toplevel()
 
     # Título de ventana + fullscreen
     Votacion.title("Sistema de Votación Automatizado - Votación")
@@ -87,7 +87,7 @@ def votacion(candidatos):
         btn_votar = candidatos[i].crear_boton_voto(canvas, i + 1, images_votar[i])
         btn_votar.place(
             x=canvas_width / 2,
-            y=canvas_height * 0.85,
+            y=canvas_height * 0.9,
             anchor="n",
         )
 
