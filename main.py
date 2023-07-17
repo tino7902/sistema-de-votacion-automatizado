@@ -7,7 +7,11 @@ from PIL import Image, ImageTk
 
 
 def main():
-    '''Inicializa el programa. Formatea resultados_parciales.txt. Inicia ventana de Bloqueo'''
+    """
+    Inicializa el programa.
+    Formatea resultados_parciales.txt.
+    Inicia ventana de Bloqueo
+    """
     candidatos = []  # lista de candidatos
     contras = []  # lista de contraseñas generadas
 
@@ -19,18 +23,19 @@ def main():
 
 
 def bloqueo(contras, candidatos):
-    '''
-    Pantalla inicial y la más usada. Bloquea la votacion hasta que se ingrese una de las contraseñas
+    """
+    Pantalla inicial y la más usada.
+    Bloquea la votacion hasta que se ingrese una de las contraseñas.
 
         Parametros:
             contras (list): lista de las contraseñas
             condidatos (list): lista de los candidatos
-    '''
+    """
 
     Bloqueo = tk.Tk()
 
     # se hace que la ventana sea pantalla completa
-    Bloqueo.attributes('-fullscreen', True)
+    Bloqueo.attributes("-fullscreen", True)
 
     # configuracion de la grid
     Bloqueo.grid_rowconfigure(0, weight=1)
@@ -46,11 +51,15 @@ def bloqueo(contras, candidatos):
     contra = tk.StringVar()
     ing_contra_img = ImageTk.PhotoImage(file="./IMG/img_ingresar_contra.jpeg")
     print(ing_contra_img)
-    ttk.Label(Bloqueo, borderwidth=0, image=ing_contra_img, text="").grid(column=1, row=0, padx=5, pady=5)
-    ttk.Entry(Bloqueo, textvariable=contra, show="*").grid(column=1, row=0, padx=5, pady=5)
+    ttk.Label(Bloqueo, borderwidth=0, image=ing_contra_img, text="").grid(
+        column=1, row=0, padx=5, pady=5
+    )
+    ttk.Entry(Bloqueo, textvariable=contra, show="*").grid(
+        column=1, row=0, padx=5, pady=5
+    )
 
     def chequear_contra():
-        '''Chequea la contraseña ingresada y abre la ventana correspondiente.'''
+        """Chequea la contraseña ingresada y abre la ventana correspondiente."""
 
         # se guarda la contraseña en una variable para compararla
         contra_ingresada = contra.get()
@@ -75,10 +84,12 @@ def bloqueo(contras, candidatos):
     # Boton de confirmación + imagen
     img = Image.open("./IMG/img_btn_confirmar.jpeg")
     img_confirmar = ImageTk.PhotoImage(img)
-    ttk.Button(Bloqueo, text="", command=chequear_contra, image=img_confirmar).grid(column=1, row=1, padx=5, pady=5, sticky=tk.N)
+    ttk.Button(Bloqueo, text="", command=chequear_contra, image=img_confirmar).grid(
+        column=1, row=1, padx=5, pady=5, sticky=tk.N
+    )
 
     Bloqueo.mainloop()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
